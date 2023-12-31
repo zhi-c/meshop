@@ -25,4 +25,16 @@ public class UserServiceImpl implements UserService {
         //添加
         userMapper.add(account, md5String, email, phone, question, asw, age, sex);
     }
+
+    @Override
+    public User findEmail(String email) {
+        User u = userMapper.findByUserEmail(email);
+        return u;
+    }
+
+    @Override
+    public User findPhone(String phone) {
+        User u = userMapper.findByUserPhone(phone);
+        return u;
+    }
 }
