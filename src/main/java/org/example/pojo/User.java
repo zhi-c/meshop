@@ -1,6 +1,8 @@
 package org.example.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
 
 import java.time.LocalDateTime;
 //lombok 在编译阶段，为实体类自动生成setter getter toString
@@ -9,6 +11,7 @@ import java.time.LocalDateTime;
 public class User {
     private Integer id;     //用户id
     private String account;     //用户名
+    @JsonIgnore    //让springmvc把当前对象转换成字符串时，忽略password，最终的json字符串中就没有password这个属性了
     private String password;    //密码，MD5加密
     private String email;       //邮箱
     private String phone;   //电话

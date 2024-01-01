@@ -19,8 +19,11 @@ public class Result<T> {
     }
     //快速返回操作响应结果
 
-    public static Result success() {
-        return new Result(0,"操作成功",null);
+    public static Result success(String msg) {
+        return new Result(0,msg,null);
+    }
+    public static <E> Result<E> success(String msg,E data) {
+        return new Result(0,msg,data);
     }
     public static Result error(String msg){
         return new Result(1,msg,null);

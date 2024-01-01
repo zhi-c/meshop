@@ -4,8 +4,12 @@ import org.example.mapper.UserMapper;
 import org.example.pojo.User;
 import org.example.service.UserService;
 import org.example.utils.Md5Util;
+import org.example.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,5 +40,18 @@ public class UserServiceImpl implements UserService {
     public User findPhone(String phone) {
         User u = userMapper.findByUserPhone(phone);
         return u;
+    }
+
+    @Override
+    public void update(User user) {
+        user.setUpdateTime(LocalDateTime.now());
+        userMapper.update(user);
+    }
+
+    @Override
+    public void updatePwd(String newPwd) {
+        Map<String,Object> map = ThreadLocalUtil.get();
+        String account = (String) map.get("account");
+        userMapper.updatePwd(Md5Util.getMD5String(newPwd),account);
     }
 }

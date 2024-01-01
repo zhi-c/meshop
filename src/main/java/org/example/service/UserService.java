@@ -11,4 +11,8 @@ public interface UserService {
     User findEmail(String email);
 
     User findPhone(String phone);
+    //更新用户信息
+    void update(User user);
+    //更新密码
+    void updatePwd(String newPwd);
 }

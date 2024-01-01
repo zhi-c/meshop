@@ -4,3 +4,12 @@ spring:
     url: jdbc:mysql://localhost:3306/meshop
     username: root
     password: admin
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  #开启驼峰命名法与下划线的转换
