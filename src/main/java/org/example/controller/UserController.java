@@ -2,7 +2,7 @@ package org.example.controller;
 
 
 import jakarta.validation.constraints.Pattern;
-import lombok.val;
+
 import org.example.pojo.Result;
 import org.example.pojo.User;
 import org.example.service.UserService;
