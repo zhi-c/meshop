@@ -161,7 +161,7 @@ public class UserController {
         }
     }
     @GetMapping("/getuserinfo.do")
-    public Result<User> userInfo(@RequestHeader(name = "Authorization") String token){
+    public Result<User> userInfo(){
         Map<String,Object> map = ThreadLocalUtil.get();
         String account = (String) map.get("account");
         User user = userService.findAccount(account);
