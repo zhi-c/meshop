@@ -3,7 +3,6 @@ package org.example.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import org.example.pojo.GoodsCategory;
 import org.example.pojo.Param;
 
 import java.util.List;

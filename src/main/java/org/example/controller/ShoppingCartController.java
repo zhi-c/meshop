@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.pojo.GoodsLists;
 import org.example.pojo.Result;
 import org.example.pojo.ShoppingCart;
 import org.example.service.ShoppingCartService;
@@ -23,14 +24,18 @@ public class ShoppingCartController {
     @PostMapping("/getcartcount.do")
     public Result getCartCount(){
         Map<String,Object> map = ThreadLocalUtil.get();
-        if(map==null){
+        if(map == null){
             return Result.error("请登录后，在查看购物车！");
         }
-        String userId = (String) map.get("id");
-
+        Integer userId = (Integer) map.get("id");
         Integer quantity = shoppingCartService.findCartByUserId(userId);
+
         return Result.success(quantity);
+    }
 
-
+    @PostMapping("/updatecarts.do")
+    public Result updateCarts(String productId,String count,String checked){
+        GoodsLists goodsLists = shoppingCartService.updateCarts(productId,count,checked);
+        return Result.success(goodsLists);
     }
 }
