@@ -18,6 +18,10 @@ public class CorsFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         this.addCorsHeader(request, response);
+        if ("OPTIONS".equals(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
         chain.doFilter(request, response);
     }
 
@@ -29,10 +33,7 @@ public class CorsFilter extends HttpFilter {
         response.setHeader("Access-Control-Allow-Credentials", "true");//这行是关键
 
 
-        if ("OPTIONS".equals(request.getMethod())) {
-            response.setStatus(HttpServletResponse.SC_OK);
-            return;
-        }
+
 //        response.addHeader("Access-Control-Allow-Credentials", request.getHeader("Origin"));
 //
 //        response.addHeader("Access-Control-Allow-Origin", "http://loaclhost:5173");
