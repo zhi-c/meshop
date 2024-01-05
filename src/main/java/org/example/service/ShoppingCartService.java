@@ -3,6 +3,8 @@ package org.example.service;
 import org.example.pojo.GoodsLists;
 import org.example.pojo.ShoppingCart;
 
+import java.util.List;
+
 
 public interface ShoppingCartService {
     Integer findCartGoodsQuantityByUserId(Integer userId);
@@ -18,4 +20,9 @@ public interface ShoppingCartService {
     GoodsLists findAllCarts(Integer userId);
 
     void saveCart(Integer userId, String productId, String count);
+
+    List<ShoppingCart> findCartByUserId(Integer userId);
+
+
+
 }

@@ -130,4 +130,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public void saveCart(Integer userId, String productId, String count) {
         shoppingCartMapper.saveCart(userId,productId,count);
     }
+
+    @Override
+    public List<ShoppingCart> findCartByUserId(Integer userId) {
+        return shoppingCartMapper.findCartByUserId(userId);
+    }
 }
