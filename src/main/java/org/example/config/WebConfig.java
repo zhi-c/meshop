@@ -17,9 +17,8 @@ public class WebConfig implements WebMvcConfigurer {
 
         //登录接口和注册接口不拦截
         registry.addInterceptor(loginInterceptor).excludePathPatterns(
-                "/user/do_login.do","/user/do_register.do",
-                "/product/findfloors.do","/product/findhotproducts.do","/product/getdetail.do","/product/findproducts.do",
-                "/param/findallparams.do");
+                "/user/do_login.do","/user/do_register.do", "/user/getUserByAccount.do", "/user/checkuserasw.do", "/user/resetpassword.do",
+                "/product/findfloors.do","/product/findhotproducts.do","/product/getdetail.do","/product/findproducts.do");
 
     }
 }
