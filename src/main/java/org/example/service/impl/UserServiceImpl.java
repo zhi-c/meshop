@@ -54,4 +54,9 @@ public class UserServiceImpl implements UserService {
         String account = (String) map.get("account");
         userMapper.updatePwd(Md5Util.getMD5String(newPwd),account);
     }
+
+    @Override
+    public void updatePwdNotLogin(Integer userId, String newPwd) {
+        userMapper.updatePwdNotLogin(userId,Md5Util.getMD5String(newPwd));
+    }
 }

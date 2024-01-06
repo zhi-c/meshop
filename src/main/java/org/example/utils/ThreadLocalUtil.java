@@ -1,7 +1,6 @@
 package org.example.utils;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  * ThreadLocal 工具类
