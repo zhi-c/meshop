@@ -67,8 +67,8 @@ public class GoodsController {
 
     //商品详情数据接口
     @PostMapping("/getdetail.do")
-    public Result getDetail(String productid){
-        Goods goods = goodsService.findGoodsByProductId(productid);
+    public Result getDetail(String productId){
+        Goods goods = goodsService.findGoodsByProductId(productId);
         if((goods==null)||goods.getStatus()==3){
             return Result.error("产品已经下架！");
         }
