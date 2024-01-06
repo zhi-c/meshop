@@ -19,6 +19,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public List<Address> setDefault(Integer id, Integer userId) {
+        addressMapper.setNoDefault(userId);
         addressMapper.setDefault(id,userId);
         List<Address> addressList = addressMapper.findAddressByUserId(userId);
         return addressList;
@@ -40,5 +41,10 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public void saveAddress(Integer userId, String name, String mobile, String province, String city, String district, String addr, String zip) {
         addressMapper.saveAddress(userId,name,mobile,province,city,district,addr,zip);
+    }
+
+    @Override
+    public void updateAddress(Address address) {
+        addressMapper.updateAddress(address);
     }
 }

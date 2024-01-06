@@ -14,4 +14,8 @@ public interface AddressService {
     List<Address> delAddress(Integer id, Integer userId);
 
     void saveAddress(Integer userId, String name, String mobile, String province, String city, String district, String addr, String zip);
+
+    void updateAddress(Address address);
+
+
 }

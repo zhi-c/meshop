@@ -24,6 +24,15 @@ public class AddressController {
     AddressService addressService;
 
 
+    @PostMapping("/updateAddressById")
+    public Result updateAddress(Address address){
+        if(address==null){
+            return Result.error("参数错误！");
+        }
+        addressService.updateAddress(address);
+        return Result.success("修改成功");
+    }
+
 
     @PostMapping("/findAddressById.do")
     public Result findAddressById(String id){
