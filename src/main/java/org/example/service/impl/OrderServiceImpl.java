@@ -108,4 +108,11 @@ public class OrderServiceImpl implements OrderService {
 
         return orderDetail;
     }
+
+    @Override
+    public List<Order> getList(Integer userId) {
+
+        List<Order> orderList = orderMapper.getList(userId);
+        return orderList;
+    }
 }

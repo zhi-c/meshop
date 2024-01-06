@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -47,6 +48,19 @@ public class OrderController {
         Integer userId = (Integer) map.get("id");
         OrderDetail orderDetail = orderService.createOrder(userId,Integer.valueOf(addrId));
         return Result.success(orderDetail);
+
+    }
+
+    //获取用户订单列表
+    @GetMapping("/getlist.do")
+    public Result getList(){
+        Map<String,Object> map = ThreadLocalUtil.get();
+        if(map == null){
+            return Result.error("请登录后，在查看购物车！");
+        }
+        Integer userId = (Integer) map.get("id");
+        List<Order> orderList = orderService.getList(userId);
+        return Result.success(orderList);
 
     }
 

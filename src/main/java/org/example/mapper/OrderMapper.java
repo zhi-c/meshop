@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.example.pojo.Order;
 
+import java.util.List;
+
 @Mapper
 public interface OrderMapper {
     @Select("select * from `order` where order_no = #{orderNo}")
@@ -22,4 +24,7 @@ public interface OrderMapper {
 
     @Update("update `order` set amount = #{totalPrice} where order_no = #{orderNo}")
     void updateOrder(Float totalPrice,Integer orderNo);
+
+    @Select("select * from `order` where uid = #{userId}")
+    List<Order> getList(Integer userId);
 }
