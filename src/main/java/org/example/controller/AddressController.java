@@ -62,6 +62,7 @@ public class AddressController {
             else{
                 addr.setDfault(0);
             }
+            addressService.updateAddress(addr);
         }
 
         return Result.success(addressList);
