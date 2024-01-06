@@ -1,6 +1,5 @@
 package org.example.mapper;
 
-import lombok.Data;
 import org.apache.ibatis.annotations.*;
 import org.example.pojo.Address;
 

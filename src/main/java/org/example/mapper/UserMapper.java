@@ -27,6 +27,6 @@ public interface UserMapper {
     @Update("update user set password = #{password} ,update_time = now() where account = #{account}")
     void updatePwd(String password, String account);
 
-    @Update("update user set password = #{password} ,update_time = now() where user_id = #{userId}")
+    @Update("update user set password = #{password} ,update_time = now() where id = #{userId}")
     void updatePwdNotLogin(Integer userId, String password);
 }
