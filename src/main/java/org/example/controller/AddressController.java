@@ -62,9 +62,6 @@ public class AddressController {
             else{
                 addr.setDfault(0);
             }
-            addressList.removeIf(address -> address.getIsDel() == 1);
-
-            addressService.updateAddress(addr);
         }
 
         return Result.success(addressList);
@@ -104,7 +101,7 @@ public class AddressController {
         if(map == null){
             return Result.error("请登录后，在查看购物车！");
         }
-        if (addrId != null) {
+        if (addrId != null && !addrId.isEmpty()) {
             Integer aId = Integer.valueOf(addrId);
             Address addressById = addressService.findAddressById(aId);
             addressById.setIsDel(1);
