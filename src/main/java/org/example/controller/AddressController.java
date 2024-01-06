@@ -63,7 +63,6 @@ public class AddressController {
                 addr.setDfault(0);
             }
             addressList.removeIf(address -> address.getIsDel() == 1);
-
             addressService.updateAddress(addr);
         }
 
