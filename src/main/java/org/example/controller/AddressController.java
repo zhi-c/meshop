@@ -62,6 +62,8 @@ public class AddressController {
             else{
                 addr.setDfault(0);
             }
+            addressList.removeIf(address -> address.getIsDel() == 1);
+
             addressService.updateAddress(addr);
         }
 
@@ -91,6 +93,8 @@ public class AddressController {
         }
         Integer userId = (Integer) map.get("id");
         List<Address> addressList = addressService.delAddress(Integer.valueOf(id),userId);
+        addressList.removeIf(address -> address.getIsDel() == 1);
+
         return Result.success(addressList);
     }
     //增加地址
