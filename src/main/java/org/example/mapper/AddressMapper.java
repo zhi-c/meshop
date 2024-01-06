@@ -17,6 +17,7 @@ public interface AddressMapper {
 
     @Select("select * from address where user_id = #{userId}")
     List<Address> findAddressByUserId(Integer userId);
+
     @Delete("delete from address where id = #{id}")
     void delAddress(Integer id);
     @Insert("insert into address(user_id,name,mobile,province,city,district,addr,zip,isDel,created,updated) " +

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/addr")
@@ -53,6 +54,16 @@ public class AddressController {
         if(addressList==null){
             return Result.success("默认地址设置失败！");
         }
+//                在数据库中更改
+        for (Address addr : addressList){
+            if (Objects.equals(addr.getId(), Integer.valueOf(id))) {
+                addr.setDfault(1);
+            }
+            else{
+                addr.setDfault(0);
+            }
+        }
+
         return Result.success(addressList);
     }
     //收货人地址列表接口
