@@ -15,4 +15,6 @@ public interface UserService {
     void update(User user);
     //更新密码
     void updatePwd(String newPwd);
+
+    void updatePwdNotLogin(Integer userId, String newPwd);
 }

@@ -167,5 +167,21 @@ public class UserController {
         User user = userService.findAccount(account);
         return Result.success(user);
     }
+    //更改密码不用登录
+    @PostMapping("/setnewpassword.do")
+    public Result setNewPassword(Integer userId,@RequestBody Map<String,String> params){
+        //参数校验
+        String newPwd = params.get("new_pwd");
+        String rePwd = params.get("re_pwd");
+        if(!StringUtils.hasLength(newPwd)||!StringUtils.hasLength(rePwd)){
+            return Result.error("确实必要的参数");
+        }
+        if(!rePwd.equals(newPwd)){
+            return Result.error("两次填写的新密码不一致");
+        }
+        //调用service
+        userService.updatePwdNotLogin(userId,newPwd);
+        return Result.success("密码修改成功");
+    }
 
 }
