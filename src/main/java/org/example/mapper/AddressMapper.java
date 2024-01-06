@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface AddressMapper {
-    @Select("select * from address where id =#{id}")
+    @Select("select * from address where id =#{id} and isDel = 0")
     Address findAddressById(Integer id);
     @Update("update address set dfault = 0 where user_id = #{userId}")
     void setNoDefault(Integer userId);
