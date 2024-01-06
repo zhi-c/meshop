@@ -1,6 +1,5 @@
 package org.example.mapper;
 
-import lombok.Data;
 import org.apache.ibatis.annotations.*;
 import org.example.pojo.Address;
 
@@ -8,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface AddressMapper {
-    @Select("select * from address where id =#{id}")
+    @Select("select * from address where id =#{id} and isDel = 0")
     Address findAddressById(Integer id);
     @Update("update address set dfault = 0 where user_id = #{userId}")
     void setNoDefault(Integer userId);
@@ -17,6 +16,7 @@ public interface AddressMapper {
 
     @Select("select * from address where user_id = #{userId}")
     List<Address> findAddressByUserId(Integer userId);
+
     @Delete("delete from address where id = #{id}")
     void delAddress(Integer id);
     @Insert("insert into address(user_id,name,mobile,province,city,district,addr,zip,isDel,created,updated) " +

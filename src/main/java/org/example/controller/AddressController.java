@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/addr")
@@ -53,6 +54,17 @@ public class AddressController {
         if(addressList==null){
             return Result.success("默认地址设置失败！");
         }
+//                在数据库中更改
+        for (Address addr : addressList){
+            if (Objects.equals(addr.getId(), Integer.valueOf(id))) {
+                addr.setDfault(1);
+            }
+            else{
+                addr.setDfault(0);
+            }
+            addressService.updateAddress(addr);
+        }
+
         return Result.success(addressList);
     }
     //收货人地址列表接口
@@ -64,6 +76,7 @@ public class AddressController {
         }
         Integer userId = (Integer) map.get("id");
         List<Address> addressList = addressService.findAddressByUserId(userId);
+        addressList.removeIf(addr -> addr.getIsDel() == 1);
         return Result.success(addressList);
     }
     //删除收货人地址
@@ -82,14 +95,21 @@ public class AddressController {
     }
     //增加地址
     @PostMapping("/saveaddr.do")
-    public Result saveAddress(String name,String mobile,String province,String city,String district,String addr,String zip){
+    public Result saveAddress(String addrId, String name,String mobile,String province,String city,String district,String addr,String zip){
         Map<String,Object> map = ThreadLocalUtil.get();
         if(map == null){
             return Result.error("请登录后，在查看购物车！");
         }
+        if (addrId != null && !addrId.isEmpty()) {
+            Integer aId = Integer.valueOf(addrId);
+            Address addressById = addressService.findAddressById(aId);
+            addressById.setIsDel(1);
+            addressService.updateAddress(addressById);
+        }
         Integer userId = (Integer) map.get("id");
         addressService.saveAddress(userId,name,mobile,province,city,district,addr,zip);
         List<Address> addressList = addressService.findAddressByUserId(userId);
+        addressList.removeIf(address -> address.getIsDel() == 1);
         return Result.success(addressList);
     }
 }

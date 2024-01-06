@@ -169,10 +169,11 @@ public class UserController {
     }
     //更改密码不用登录
     @PostMapping("/setnewpassword.do")
-    public Result setNewPassword(Integer userId,@RequestBody Map<String,String> params){
+    public Result setNewPassword(@RequestBody Map<String,String> params){
         //参数校验
         String newPwd = params.get("new_pwd");
         String rePwd = params.get("re_pwd");
+        Integer userId = Integer.valueOf(params.get("userId"));
         if(!StringUtils.hasLength(newPwd)||!StringUtils.hasLength(rePwd)){
             return Result.error("确实必要的参数");
         }
